@@ -1,4 +1,5 @@
 **nxiload by Ben Daluz 2020**
+-----------------------------
 nxiload loads a Spectrum Next Layer 2 .nxi image file and displays it on screen
 
 nxiload is compatible with nxi files of size 49,152 bytes (pixel data only, no palette)
@@ -7,9 +8,11 @@ with 512 bytes of palette data in %RRRGGGBB, %P000000B format) including a 9 bit
 from the available 512 colours
 
 **Installation**
+-----------------------------
 Copy /build/nxiload to /dot/nxiload on your Spectrum Next SD card
 
 **Browser Integration**
+-----------------------------
 Run the included install.bas to set up file association for .nxi files in the Spectrum Next browser
 
 **OR**
@@ -20,6 +23,7 @@ run the following command at the Spectrum Next command line after copying nxiloa
 Once done, this will enable you to open .nxi files from the browser and nxiload will display the image
 
 **Source**
+-----------------------------
 The included source can be built with sdcc using the included mnxi.py build script which utilises
 Sol's Stupidly Simple Build System v.2.1.
 
