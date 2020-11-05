@@ -4,4 +4,23 @@ nxiload loads a Spectrum Next Layer 2 .nxi image file and displays it on screen
 
 nxiload is compatible with nxi files of size 49,152 bytes (pixel data only, no palette)
 using the standard Next palette and also nxi files of size 49664 bytes (pixel data prepended
-with 512 bytes of palette data in %RRRGGGBB, %P000000B format)
+with 512 bytes of palette data in %RRRGGGBB, %P000000B format) including a 9 bit custom palette
+from the available 512 colours
+
+Installation
+------------
+
+copy /build/nxiload to /dot/nxiload on your Spectrum Next SD card
+
+Browser Integration
+-------------------
+
+run the included install.bas to set up file association for .nxi files in the Spectrum Next browser
+
+OR
+
+run the following command at the Spectrum Next command line after copying nxiload to /dot on your SD card
+
+.associate -a NXI "<.nxiload |"
+
+Once done, this will enable you to open .nxi files from the browser and nxiload will display the image
