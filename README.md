@@ -9,6 +9,9 @@ from the available 512 colours
 ## Installation
 Copy ***/build/nxiload*** to ***/dot/nxiload*** on your Spectrum Next SD card
 
+## Usage
+```.nxiload image.nxi```
+
 ## Browser Integration
 Run the included install.bas to set up file association for .nxi files in the Spectrum Next browser
 
