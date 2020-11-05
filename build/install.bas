@@ -1,0 +1,1 @@
+.associate -a NXI "<.nxiload |"
