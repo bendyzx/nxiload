@@ -58,8 +58,6 @@
                     .endm
 
                     .macro PRESERVE
-                        ;ld (_stackptr),sp										; value (stackptr) = add sp
-                        ;ld sp,#_mystack										; sp = addr (_mystack)
                         push af
                         push bc
                         push de
@@ -75,7 +73,6 @@
                         pop de
                         pop bc
                         pop af
-                        ;ld sp,(_stackptr)										; sp = value (_stackptr)
                     .endm
 
                     .macro OUTPUTLETTER, value
@@ -295,17 +292,16 @@ _main::				PRESERVE
                     NEXTREG_A PERIPHERAL2									; restore turbo
                     ld a, (_nx7)
                     NEXTREG_A TURBOMODE										; restore speed
-                    RESTORE
                     ld a,(_error)
                     or a
                     jp nz,.return
 ;--------------------
-.pause:				ld b, #60
+.pause:				ld b, #40
 .p3:				push bc
                     ld b, #0
 .p2:				push bc
-                    call .keypressed
-                    ld b, #0					
+                    jp .keypressed
+.p2ret:             ld b, #0					
 .p1:				nop
                     djnz .p1
                     pop bc
@@ -320,13 +316,12 @@ _main::				PRESERVE
                     cpl
                     and c
                     or a
-                    ret z
-                    jp .pressed
-;--------------------
-.pressed:			pop bc
+                    jp z, .p2ret
+                    pop bc
                     pop bc
 ;--------------------
-.return:			ret														; RETURN
+.return:            RESTORE
+                    ret														; RETURN
 ;--------------------
 _fileError:			out (#254),a											; OUT(254) = a (0)
                     call _fclose
@@ -370,7 +365,7 @@ _fopen:				ld iy, (_osiy)
                     .db #62													; ld a, N
 ;--------------------
 _drive:				.db #0													; 0
-                    ;push ix													; PUSH ix
+                    ;push ix												; PUSH ix
                     ;pop hl													; POP hl
                     rst #0x08												; RST08   a=drive, hl=filaname, b=access modes
                     .db F_OPEN												; 154
